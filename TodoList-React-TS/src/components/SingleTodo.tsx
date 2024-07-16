@@ -9,14 +9,25 @@ type SingleTodoProps = {
 }
 
 const SingleTodo = ({todo, todos, setTodos}: SingleTodoProps) => {
+
+  const handleDone = (id: number) => {
+    setTodos(todos.map((todo) =>
+        todo.id ===id ? {...todo, isDone: !todo.isDone} : todo));
+  }
   return (
     <form className="todos__single">
-        <span className="todos__single--text">{todo.todo}</span>
+        {
+            todo.isDone ? (
+                <span className="todos__single--text"><s>{todo.todo}</s></span>
+            ) : (
+                    <span className="todos__single--text">{todo.todo}</span>
+                )
+        }
         <div>
             <span className="icon">
                 <MdEdit />
             </span>
-            <span className="icon">
+            <span className="icon" onClick={() => handleDone(todo.id)}>
                 <FaCheckCircle />
             </span>
             <span className="icon">
