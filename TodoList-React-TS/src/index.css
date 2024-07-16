@@ -4,4 +4,9 @@ html {
 
 body {
   margin: 0;
+  background: linear-gradient(
+    to left,
+    rgba(10, 36, 107, 0.619) 0%,
+    rgba(0, 128, 128, 1) 100%
+  );
 }

@@ -1,6 +1,6 @@
 .heading {
   font-style: italic;
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .input {
@@ -82,7 +82,8 @@
   }
 
   .filter,
-  .sort {
+  .sort,
+  .search {
     margin-top: 10px;
   }
 
@@ -93,10 +94,15 @@
   }
 
   #select-filter,
-  #select-sort {
+  #select-sort,
+  .search__box {
     padding: 5px;
     border: none;
     outline: none;
+  }
+
+  .search__box {
+    font-size: 16px;
   }
 
   .options {

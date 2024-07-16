@@ -12,6 +12,11 @@ const TodoList = ({todos,  setTodos}: TodoListProps) => {
 
     const [filter, setFilter] = useState<string>("all");
     const [sort, setSort] = useState<string>("none");
+    const [searchText, setSearchText] = useState<string>("");
+
+    const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setSearchText(event.target.value);
+    }
 
     const handleSortChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setSort(event.target.value);
@@ -21,7 +26,11 @@ const TodoList = ({todos,  setTodos}: TodoListProps) => {
         setFilter(event.target.value);
     }
 
-    const filteredTodos = todos.filter((todo) => {
+    const searchedTodos = todos.filter((todo) => {
+        return todo.todo.toLowerCase().includes(searchText.toLowerCase());
+    })
+
+    const filteredTodos = searchedTodos.filter((todo) => {
         if(filter === "completed") {
             return todo.isDone;
         }
@@ -45,24 +54,33 @@ const TodoList = ({todos,  setTodos}: TodoListProps) => {
 
     return (
         <>
-        <div className="options">
-            <div className="filter">
-                <label className="filter_label" htmlFor="select-filter">Filter:</label>
-                    <select id="select-filter" value={filter} onChange={handleFilterChange}>
-                        <option value="all">All</option>
-                        <option value="completed">Completed</option>
-                        <option value="pending">Pending</option>
-                    </select>
+            <div className="options">
+                <div className="search">
+                    <input
+                        type="text"
+                        placeholder="Search Todos..."
+                        className="search__box"
+                        value={searchText}
+                        onChange={handleSearchChange}
+                    />
+                </div>
+                <div className="filter">
+                    <label className="filter_label" htmlFor="select-filter">Filter:</label>
+                        <select id="select-filter" value={filter} onChange={handleFilterChange}>
+                            <option value="all">All</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                        </select>
+                </div>
+                <div className="sort">
+                    <label className="sort_label" htmlFor="select-sort">Sort:</label>
+                        <select id="select-sort" value={sort} onChange={handleSortChange}>
+                            <option value="none">None</option>
+                            <option value="alphabetically">Alphabetically</option>
+                            <option value="newest-first">Newest First</option>
+                        </select>
+                </div>
             </div>
-            <div className="sort">
-                <label className="sort_label" htmlFor="select-sort">Sort:</label>
-                    <select id="select-sort" value={sort} onChange={handleSortChange}>
-                        <option value="none">None</option>
-                        <option value="alphabetically">Alphabetically</option>
-                        <option value="newest-first">Newest First</option>
-                    </select>
-            </div>
-        </div>
 
             <div className="todos">
                 {sortedTodos.map((todo) => (
