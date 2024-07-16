@@ -81,17 +81,28 @@
     cursor: pointer;
   }
 
-  .filter {
+  .filter,
+  .sort {
     margin-top: 10px;
   }
 
-  .filter_label {
+  .filter_label,
+  .sort_label {
     font-size: 18px;
     margin-right: 10px;
   }
 
-  #select-filter {
+  #select-filter,
+  #select-sort {
     padding: 5px;
     border: none;
     outline: none;
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 90%;
+    margin: 10px 0;
   }
