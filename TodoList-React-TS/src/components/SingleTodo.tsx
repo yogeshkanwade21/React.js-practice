@@ -14,6 +14,10 @@ const SingleTodo = ({todo, todos, setTodos}: SingleTodoProps) => {
     setTodos(todos.map((todo) =>
         todo.id ===id ? {...todo, isDone: !todo.isDone} : todo));
   }
+
+  const handleDelete = (id: number) => {
+      setTodos(todos.filter((todo) => todo.id !== id));
+  }
   return (
     <form className="todos__single">
         {
@@ -30,7 +34,7 @@ const SingleTodo = ({todo, todos, setTodos}: SingleTodoProps) => {
             <span className="icon" onClick={() => handleDone(todo.id)}>
                 <FaCheckCircle />
             </span>
-            <span className="icon">
+            <span className="icon" onClick={()=> handleDelete(todo.id)}>
                 <MdDelete />
             </span>
         </div>
