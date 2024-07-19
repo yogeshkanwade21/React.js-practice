@@ -1,9 +1,11 @@
 import { Button, Container, Nav, Navbar as NavbarBs } from "react-bootstrap";
 import { NavLink, useNavigate } from "react-router-dom";
+import { useAppSelector } from "../redux/hooks/hooks";
 
 export const Navbar = () => {
 
   const navigate = useNavigate();
+  const cart = useAppSelector((state) => state.cart);
 
   return (
     <NavbarBs sticky="top" className="bg-white shadow-sm mb-3">
@@ -39,7 +41,7 @@ export const Navbar = () => {
                 transform: "translate(25%, 25%)",
               }}
             >
-              2
+              {cart.quantity}
             </div>
         </Button>
       </Container>
