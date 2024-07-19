@@ -1,7 +1,9 @@
 import Card from 'react-bootstrap/Card';
 import { formatCurrency } from '../utilities/formatCurrency';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addProduct } from '../redux/features/Cart/cartSlice';
+
+import { useAppSelector } from '../redux/hooks/hooks';
 
 type StoreItemProps = {
     id: number
@@ -14,7 +16,7 @@ export const StoreItem = ({ id, ItemName, price, imgUrl }: StoreItemProps) => {
 
     const dispatch = useDispatch();
 
-    const cart = useSelector(state => state.cart);
+    const cart = useAppSelector((state) => state.cart);
     const itemInCart = cart.products.find(item => item.id === id);
     const quantity = itemInCart ? itemInCart.quantity : 0;
 

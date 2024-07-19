@@ -1,13 +1,14 @@
-import { useSelector } from "react-redux";
 import {Card, Col, Row} from 'react-bootstrap';
 import {formatCurrency} from '../utilities/formatCurrency';
 
+import { useAppSelector } from "../redux/hooks/hooks";
+
 export const Cart = () => {
   
-    const cart = useSelector(state => state.cart);
+    const cart = useAppSelector((state) => state.cart);
     const products = cart.products;
-    // console.log(cart);
-    console.log(products);
+    console.log(cart);
+    // console.log(products);
 
     if(products.length === 0){
         return <h1>Cart is empty</h1>
@@ -37,7 +38,7 @@ export const Cart = () => {
                         {product.quantity} x {formatCurrency(product.price)}
                         </Card.Text>
                         <Card.Text className="mt-5">
-                        <span className="fs-4 fw-bold">{formatCurrency(product.price * product.quantity)}</span>
+                        <span className="fs-4 fw-bold">{formatCurrency(product.price * product.quantity ?? 0)}</span>
                         </Card.Text>
                     </Col>
                 </Row>
