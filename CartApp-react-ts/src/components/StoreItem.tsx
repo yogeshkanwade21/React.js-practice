@@ -1,7 +1,7 @@
 import Card from 'react-bootstrap/Card';
 import { formatCurrency } from '../utilities/formatCurrency';
 import { useDispatch } from 'react-redux';
-import { addProduct } from '../redux/features/Cart/cartSlice';
+import { addProduct, incrementQuantity, decrementQuantity, removeProduct } from '../redux/features/Cart/cartSlice';
 
 import { useAppSelector } from '../redux/hooks/hooks';
 
@@ -49,13 +49,13 @@ export const StoreItem = ({ id, ItemName, price, imgUrl }: StoreItemProps) => {
                         className="d-flex align-items-center justify-content-center"
                         style={{ gap: ".5rem" }}
                     >
-                        <button className="btn btn-primary">-</button>
+                        <button className="btn btn-primary" onClick={() => dispatch(decrementQuantity({id}))}>-</button>
                         <div>
                         <span className="fs-3">{quantity}</span> in cart
                         </div>
-                        <button className="btn btn-primary">+</button>
+                        <button className="btn btn-primary" onClick={() => dispatch(incrementQuantity({id}))}>+</button>
                     </div>
-                    <button className="btn btn-danger">Remove</button>
+                    <button className="btn btn-danger" onClick={() => dispatch(removeProduct({id}))}>Remove</button>
                     </div>
                 )}
             </div>

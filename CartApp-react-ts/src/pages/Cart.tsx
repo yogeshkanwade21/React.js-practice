@@ -10,14 +10,14 @@ export const Cart = () => {
     console.log(cart);
     // console.log(products);
 
-    if(products.length === 0){
+    if(cart.quantity === 0){
         return <h1>Cart is empty</h1>
     }
 
 
     return (
       <>
-      <h2>Items in Cart <i>({products.length})</i></h2>
+      <h2>Items in Cart <i>({cart.quantity})</i></h2>
 
       {products.map((product) => (
         <Card className="mb-3 mt-3" key={product.id}>
